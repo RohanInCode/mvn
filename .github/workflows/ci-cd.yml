@@ -1,4 +1,4 @@
-name : java mavenwith actions
+name : java maven with actions
 
 on:
   push:
