@@ -1,0 +1,36 @@
+name : java ci with actions
+
+on:
+push:
+branches: ['main']
+
+jobs:
+build: 
+runs-on: ubntu-latest
+
+steps:
+name: checkout code
+uses: actions/checkout@v4
+
+name:setup java
+uses: actions/setup-java@v4
+with:
+version: '21'
+distribution: 'temurin'
+
+name: install dependencies 
+run: mvn dependency:resolve
+
+name: build and test
+run: mvn clean install
+
+name: run tests
+run: mvn test
+
+name: upload artifacts
+uses: actions/upload-artificats@v4
+
+with:
+name: java -artifacts
+path: target/*.jar
+
